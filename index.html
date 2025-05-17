@@ -1,7 +1,139 @@
-<html>
-  <body>
-    <h1>
-      Hello World
-    </h1>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriBot - Recipe & Meal Planning Assistant</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-robot"></i> MyDietPal</h1>
+            <p>Your personal recipe, calorie, and meal planning assistant</p>
+        </header>
+        
+        <div class="chat-container">
+            <div class="chat-header">
+                <div class="chat-tabs">
+                    <button class="tab-button active" data-tab="chat">Chat</button>
+                    <button class="tab-button" data-tab="recipes">Recipes</button>
+                    <button class="tab-button" data-tab="calories">Calorie Calculator</button>
+                    <button class="tab-button" data-tab="meal-plan">Meal Plan</button>
+                    <button class="tab-button" data-tab="BMI-calculator"><a href="bmi.html">BMI</a></button>
+                </div>
+             
+            </div>
+            
+            <div class="chat-area" id="chat-area">
+                <div class="bot-message">
+                    <div class="message-content">
+                        <p>Hello! I'm NutriBot. How can I help you today? You can ask for recipes, calculate calories, or get a personalized meal plan.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="input-area">
+                <input type="text" id="user-input" placeholder="Type your message here..." autocomplete="off">
+                <button id="send-button"><i class="fas fa-paper-plane"></i></button>
+            </div>
+            
+            <div class="quick-actions">
+                <button class="quick-action" data-query="Show me healthy breakfast ideas">Breakfast Ideas</button>
+                <button class="quick-action" data-query="Calculate calories for 1 banana">Calorie Check</button>
+                <button class="quick-action" data-query="Create a vegetarian meal plan">Meal Plan</button>
+                <button class="quick-action" data-query="calculate your BMI">calculate BMI</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recipe Modal -->
+    <div id="recipe-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="recipe-title"></h2>
+            <div class="recipe-details">
+                <div class="recipe-image">
+                    <img id="recipe-img" src="" alt="Recipe Image">
+                    <div class="recipe-meta">
+                        <span><i class="fas fa-clock"></i> <span id="recipe-time"></span></span>
+                        <span><i class="fas fa-utensils"></i> <span id="recipe-servings"></span></span>
+                        <span><i class="fas fa-fire"></i> <span id="recipe-calories"></span></span>
+                    </div>
+                </div>
+                <div class="recipe-info">
+                    <h3>Ingredients</h3>
+                    <ul id="recipe-ingredients"></ul>
+                    <h3>Instructions</h3>
+                    <ol id="recipe-instructions"></ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Calorie Calculator Modal -->
+    <div id="calorie-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Calorie Calculator</h2>
+            <div class="calculator-form">
+                <div class="form-group">
+                    <label for="food-item">Food Item:</label>
+                    <input type="text" id="food-item" placeholder="e.g., banana, chicken breast">
+                </div>
+                <div class="form-group">
+                    <label for="quantity">Quantity:</label>
+                    <input type="number" id="quantity" value="1" min="0.1" step="0.1">
+                    <select id="unit">
+                        <option value="g">grams</option>
+                        <option value="oz">ounces</option>
+                        <option value="cup">cups</option>
+                        <option value="tbsp">tablespoons</option>
+                        <option value="tsp">teaspoons</option>
+                        <option value="whole">whole item</option>
+                    </select>
+                </div>
+                <button id="calculate-calories">Calculate</button>
+                <div id="calorie-result" class="result-box"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Meal Plan Modal -->
+    <div id="mealplan-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Meal Plan Generator</h2>
+            <div class="mealplan-form">
+                <div class="form-group">
+                    <label for="diet-type">Diet Type:</label>
+                    <select id="diet-type">
+                        <option value="balanced">Balanced</option>
+                        <option value="vegetarian">Vegetarian</option>
+                        <option value="vegan">Vegan</option>
+                        <option value="keto">Keto</option>
+                        <option value="mediterranean">Mediterranean</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="calorie-goal">Daily Calorie Goal:</label>
+                    <input type="number" id="calorie-goal" value="2000" min="1200" max="4000">
+                </div>
+                <div class="form-group">
+                    <label for="mealplan-days">Number of Days:</label>
+                    <select id="mealplan-days">
+                        <option value="1">1 Day</option>
+                        <option value="3">3 Days</option>
+                        <option value="7" selected>7 Days</option>
+                    </select>
+                </div>
+                <button id="generate-mealplan">Generate Meal Plan</button>
+                <div id="mealplan-result" class="result-box"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
 </html>
